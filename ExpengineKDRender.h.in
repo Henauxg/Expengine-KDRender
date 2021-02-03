@@ -1,0 +1,3 @@
+#define ExpengineKDRender_VERSION_MAJOR @ExpengineKDRender_VERSION_MAJOR@
+#define ExpengineKDRender_VERSION_MINOR @ExpengineKDRender_VERSION_MINOR@
+#define ExpengineKDRender_VERSION_PATCH @ExpengineKDRender_VERSION_PATCH@
