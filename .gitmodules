@@ -1,0 +1,3 @@
+[submodule "ExperimEngine"]
+	path = ExperimEngine
+	url = https://github.com/Henauxg/ExperimEngine.git
