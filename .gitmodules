@@ -1,6 +1,6 @@
 [submodule "ExperimEngine"]
 	path = ExperimEngine
 	url = https://github.com/Henauxg/ExperimEngine.git
-[submodule "kdrender"]
-	path = kdrender
-	url = https://gitlab.com/mongoosepaimag/kdrender.git
+[submodule "KDRender-fork"]
+	path = KDRender-fork
+	url = https://github.com/Henauxg/KDRender-fork.git
