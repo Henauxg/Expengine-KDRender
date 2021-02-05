@@ -32,16 +32,18 @@ set(RENDERER_SOURCES
 		${KDRenderDir}/src_renderer/WallRenderer.cpp)
 
 # Project executables
-add_executable(MapBuilder ${COMMON_SOURCES} ${BUILDER_SOURCES})
-add_executable(${ENGINE_APP_BUILD_TARGET_NAME} ${COMMON_SOURCES} ${RENDERER_SOURCES})
+set(BUILDER_APP_TARGET MapBuilder)
+add_executable(${BUILDER_APP_TARGET} ${COMMON_SOURCES} ${BUILDER_SOURCES})
+set(RENDERER_APP_TARGET MapRenderer)
+add_executable(${RENDERER_APP_TARGET} ${COMMON_SOURCES} ${RENDERER_SOURCES})
 
 # Project includes
-target_include_directories(MapBuilder PUBLIC
+target_include_directories(${BUILDER_APP_TARGET} PUBLIC
 	# Binary dir for CMake generated headers
     ${PROJECT_BINARY_DIR}
 	${KDRenderDir}/include
 )
-target_include_directories(${ENGINE_APP_BUILD_TARGET_NAME} PUBLIC
+target_include_directories(${RENDERER_APP_TARGET} PUBLIC
 	# Binary dir for CMake generated headers
     ${PROJECT_BINARY_DIR}
 	${KDRenderDir}/include
@@ -49,10 +51,5 @@ target_include_directories(${ENGINE_APP_BUILD_TARGET_NAME} PUBLIC
 
 # Add engine CMake and link to the built engine lib
 add_subdirectory(ExperimEngine)
-target_link_libraries(${ENGINE_APP_BUILD_TARGET_NAME} LibExperimEngine)
-
-# Project includes
-target_include_directories(${ENGINE_APP_BUILD_TARGET_NAME} PUBLIC
-	# For CMake generated headers
-    ${PROJECT_BINARY_DIR}
-)
+add_experimengine_target(${BUILDER_APP_TARGET} ${PROJECT_SOURCE_DIR}/engine)
+add_experimengine_target(${RENDERER_APP_TARGET} ${PROJECT_SOURCE_DIR}/engine)
