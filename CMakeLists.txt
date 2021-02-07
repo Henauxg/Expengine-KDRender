@@ -58,3 +58,10 @@ target_include_directories(${RENDERER_APP_TARGET} PUBLIC
 	${KDRenderDir}/include
 	${Boost_INCLUDE_DIR}
 )
+
+# Post build commands
+# Common commands
+add_custom_command(TARGET ${BUILDER_APP_TARGET} POST_BUILD
+	# Data files
+	COMMAND ${CMAKE_COMMAND} -E copy_directory  ${KDRenderDir}/maps ${CMAKE_BINARY_DIR}/maps
+)
