@@ -28,6 +28,7 @@ set(RENDERER_SOURCES
 		${KDRenderDir}/src_renderer/FlatSurfacesRenderer.cpp
 		${KDRenderDir}/src_renderer/KDTreeRenderer.cpp		
 		${KDRenderDir}/src_renderer/KDTreeRendererData.cpp
+		${KDRenderDir}/src_renderer/maprenderer.cpp
 		${KDRenderDir}/src_renderer/Screen.cpp
 		${KDRenderDir}/src_renderer/WallRenderer.cpp)
 
