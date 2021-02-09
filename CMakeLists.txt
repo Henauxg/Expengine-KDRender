@@ -44,7 +44,12 @@ add_experimengine_target(${BUILDER_APP_TARGET} ${PROJECT_SOURCE_DIR}/ExperimEngi
 add_experimengine_target(${RENDERER_APP_TARGET} ${PROJECT_SOURCE_DIR}/ExperimEngine)
 
 # Boost
-find_package(Boost REQUIRED)
+if(WEB_TARGET)
+	set_target_properties(${BUILDER_APP_TARGET} PROPERTIES COMPILE_FLAGS "-s USE_BOOST_HEADERS=1")
+	set_target_properties(${RENDERER_APP_TARGET} PROPERTIES COMPILE_FLAGS "-s USE_BOOST_HEADERS=1")
+else()
+	find_package(Boost)
+endif()
 
 # Project includes
 target_include_directories(${BUILDER_APP_TARGET} PUBLIC
@@ -60,9 +65,8 @@ target_include_directories(${RENDERER_APP_TARGET} PUBLIC
 	${Boost_INCLUDE_DIR}
 )
 
-# Post build commands
-# Common commands
-add_custom_command(TARGET ${BUILDER_APP_TARGET} POST_BUILD
+# Common commands, pre-link for the virtual file system in web builds
+add_custom_command(TARGET ${BUILDER_APP_TARGET} PRE_LINK
 	# Data files
 	COMMAND ${CMAKE_COMMAND} -E copy_directory  ${KDRenderDir}/maps ${CMAKE_BINARY_DIR}/maps
 )
